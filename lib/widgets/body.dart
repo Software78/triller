@@ -35,8 +35,21 @@ class _MyBodyState extends State<MyBody> {
             crossAxisCount: 2,
             children: List.generate(
               movies.length,
-              (index) => Card(
-                child: MyTextWidget(text: movies[index].title),
+              (index) => SizedBox(
+                child: Card(
+                  child: Column(
+                    children: [
+                      Image.network(
+                        'https://image.tmdb.org/t/p/w92/${movies[index].posterPath.toString()}',
+                      ),
+                      MyTextWidget(
+                        text: movies[index].title != null
+                            ? movies[index].originalTitle
+                            : 'No title',
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           );
